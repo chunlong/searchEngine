@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xoa-app>
+  <services>
+      <service id="search.ntc.tech.xoa2" class="com.renren.xoa2.ntc.search.SearchClientImpl" port="9090">
+          <worker-thread-pool core-size="20" max-size="60" />
+      </service>
+  </services>
+</xoa-app>
+
+
+
