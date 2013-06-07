@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration debug="false" xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="xoa.framework.coalescingStatistics" class="org.perf4j.log4j.AsyncCoalescingStatisticsAppender">
+        <param name="TimeSlice" value="60000"/>
+        <appender-ref ref="xoa.framework.perfStatsAppender"/>
+    </appender>
+
+    <!-- 该 appender 用于输出性能统计的汇总结果 -->
+    <appender name="xoa.framework.perfStatsAppender" class="org.apache.log4j.FileAppender">
+      <param name="File" value="../logs/perfStats.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+
+    <!-- 该 appender 用于输出性能统计的细节 -->
+    <appender name="xoa.framework.perfDetailAppender" class="org.apache.log4j.RollingFileAppender"> 
+      <param name="file" value="../logs/perfDetail.log"/>
+      <param name="MaxFileSize" value="200MB"/>
+      <param name="MaxBackupIndex" value="10"/>
+      <layout class="org.apache.log4j.PatternLayout"> 
+          <param name="ConversionPattern" value="%m%n"/>
+      </layout> 
+    </appender> 
+
+    <appender name="xoa.framework.fileAppender" class="org.apache.log4j.RollingFileAppender"> 
+      <param name="file" value="../logs/xoa2.log"/>
+      <param name="MaxFileSize" value="200MB"/>
+      <param name="MaxBackupIndex" value="10"/>
+      <layout class="org.apache.log4j.PatternLayout"> 
+          <param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss} [%t] %-5p %C{6} (%F:%L) - %m%n"/>
+      </layout> 
+    </appender> 
+    
+    <logger name="org.perf4j.TimingLogger" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="xoa.framework.coalescingStatistics"/>
+        <appender-ref ref="xoa.framework.perfDetailAppender"/>
+    </logger>
+
+    <logger name="com.renren.xoa2.server" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="xoa.framework.fileAppender"/>
+    </logger>
+
+    <logger name="org.apache.thrift" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="xoa.framework.fileAppender"/>
+    </logger>
+</log4j:configuration>
+

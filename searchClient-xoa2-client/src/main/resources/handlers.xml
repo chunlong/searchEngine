@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xlp-collector>
+    <!-- 定义处理器：分析器 -->
+    <handler class="com.renren.xoa2.logprofile.collector.handler.analyzer.ServiceCountAnalyzer">
+        <!-- 业务类型:根据业务类型来调用处理器 -->
+        <property name="businessType" value="XOA2" />
+        <!-- 每分钟执行一次，以秒为单位 -->
+        <property name="timerPeriod" value="60" />
+    </handler>
+
+    <!-- 定义处理器:转发器 -->
+    <handler class="com.renren.xoa2.logprofile.collector.handler.transponder.ZmqTransponder" init-method="init">
+        <!-- 业务类型:根据业务类型来调用处理器 -->
+        <property name="businessType" value="XOA-Client" />
+        <!-- 接受方地址 -->
+        <property name="endpoints" value="10.11.18.43:5564" />
+    </handler>
+</xlp-collector>

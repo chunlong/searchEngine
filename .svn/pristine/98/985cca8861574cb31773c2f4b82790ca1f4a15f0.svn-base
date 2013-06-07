@@ -1,0 +1,12 @@
+1. 创建一个服务
+create test.xoa2.renren.com [1] [0]
+2. 删除一个服务
+delete test.xoa2.renren.com [1] [0]
+3. 启用一个节点
+enable test.xoa2.renren.com 1 0 127.0.0.1:9090
+4. 禁用一个节点
+disable test.xoa2.renren.com 1 0 127.0.0.1:9090
+5. 列出一个服务的所有节点
+listNodes test.xoa2.renren.com [1] [0]
+6. 列出所有服务
+listServices

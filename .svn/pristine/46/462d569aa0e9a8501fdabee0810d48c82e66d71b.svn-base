@@ -1,0 +1,96 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.renren.xoa2</groupId>
+    <artifactId>searchClient</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <parent>
+        <groupId>com.xiaonei</groupId>
+        <artifactId>xiaonei-root-pom</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <developers>
+        <developer>
+            <name>YOU</name>
+            <email>YOU@renren-inc.com</email>
+        </developer>
+    </developers>
+    
+    <modules>
+        <!-- API module for Generate and client usage -->
+   	<module>searchClient-xoa2-api</module>
+        <!-- Real XOA2 service implement -->
+   	<module>searchClient-xoa2</module>
+        <!-- A test client to show the usage of xoa2 cli ent -->
+   	<module>searchClient-xoa2-client</module>
+    </modules>
+    
+    <dependencies>
+        <dependency>
+            <!-- Notice: version same with your generator -->
+            <groupId>org.apache.thrift</groupId>
+            <artifactId>libthrift</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.renren</groupId>
+            <artifactId>xoa2-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+		
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-core</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.5.11</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>1.5.11</version>
+    </dependency>
+    </dependencies>
+    <build>
+    <resources>
+    <resource>
+    <directory>src/main/resources</directory>
+    <includes>
+    <include>**/*.properties</include>
+    <include>**/*.xml</include>
+    </includes>
+    </resource>
+    </resources>
+     </build>
+</project>

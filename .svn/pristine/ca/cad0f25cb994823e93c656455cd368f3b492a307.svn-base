@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration debug="false" xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="xoa.framework.fileAppender" class="org.apache.log4j.RollingFileAppender"> 
+        <param name="file" value="logs/xoa2.log"/>
+        <param name="MaxFileSize" value="200MB"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout"> 
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss} [%t] %-5p %C{6} (%F:%L) - %m%n"/>
+        </layout> 
+    </appender> 
+
+    <!-- The online log aggregation goes here -->
+    <appender name="online_appender"
+              class="com.renren.xoa2.logprofile.inputtools.log4j.ExtOnlineAppender" >
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m%n" />
+        </layout>
+        <!-- 业务类型 -->
+        <param name="businessType" value="XOA-Client" />
+        <!-- 服务的id，标识xoa服务 -->
+        <param name="serviceId" value="HelloWorld.CHANGE_HERE.tech.xoa2" />
+        <!-- 用户名 -->
+        <param name="userName" value="test" />
+        <!-- 类型，用户根据不同的log业务来自定义 -->
+        <param name="type" value="logType" />
+    </appender>
+
+    <logger name="org.apache.thrift" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="xoa.framework.fileAppender"/>
+    </logger>
+
+    <logger name="com.renren.xoa2" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="xoa.framework.fileAppender"/>
+    </logger>
+
+    <!-- <logger name="com.renren.xoa2.yourprj"> -->
+    <!--     <level value="INFO"/> -->
+    <!--     <appender-ref ref="online_appender" /> -->
+    <!-- </logger> -->
+    
+</log4j:configuration>
+
